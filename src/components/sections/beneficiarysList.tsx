@@ -44,7 +44,7 @@ export default function BeneficiarysList({
                 {
                     beneficiarys.map((a, b) => (
                         b <= 2 ?
-                            <li className="flex flex-row text-4xl">
+                            <li key={'key-top-' + b} className="flex flex-row text-4xl">
                                 <button className="flex rounded-full justify-center bg-gray-100 drop-shadow-md w-10 h-10 text-gray mr-5" >
                                     <BsFillTrashFill style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 10 }} />
                                 </button>
@@ -66,7 +66,7 @@ export default function BeneficiarysList({
                 <ul className="flex flex-col p-6 gap-3 rounded max-h-100 mb-4">
                     {
                         beneficiarys.map((a, b) => (
-                            <li className="flex flex-row text-4xl">
+                            <li  key={'key-bottom-' + b} className="flex flex-row text-4xl">
                                 <button onClick={(e) => toggleBeneficiarys(e)} className="flex rounded-full justify-center bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 drop-shadow-md w-10 h-10 text-gray mr-5" >
                                     <AiOutlineUsergroupAdd style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 4, color: 'white' }} />
                                 </button>
