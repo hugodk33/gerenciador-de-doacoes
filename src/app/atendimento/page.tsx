@@ -12,10 +12,11 @@ import { BsHouse, BsPeople, BsPersonVcard , BsTelephoneOutbound } from 'react-ic
 import { arrayDumb } from '@/components/dumb/beneficiarysListDumb';
 
 export default function Service() {
-  useEffect(() => {
-    console.log('arrayDumb')
-    console.log(arrayDumb)
-  }, [])
+  
+  // useEffect(() => {
+
+  // }, [])
+
   return (
     <section>   
       <MainCtnHorizontal>
@@ -24,10 +25,9 @@ export default function Service() {
             <SideMenu />
             <Content>
               <h1 className='text-3xl pb-2 pt-2'>Atendimento</h1>
-              <h3 className='text-xl pb-2 pt-2'><BsPersonVcard className="inline-block" /> beneficiado</h3>
+              <h3 className='text-xl pb-2 pt-2'><BsPersonVcard id="beneficiado-nome" className="inline-block" /> beneficiado</h3>
               <hr className='mb-4' />
               <BeneficiarysList benefeciarys={[]} />
-              {/* <BeneficiarysList children={undefined} benefeciarys={[]} /> */}
               <h3 className='text-xl pb-2 pt-2'><BsPersonVcard className="inline-block" /> tipo de atendimento</h3>
               <hr className='mb-4' />
               <fieldset className='flex flex-row text-xl gap-4 pb-2 pt-2'>
@@ -35,11 +35,6 @@ export default function Service() {
                 <CheckBox label='saúde' />
                 <CheckBox  label='psicológico'/>
               </fieldset>
-              <Button onclick={function () {
-                alert('Function not implemented.');
-              } } >
-                teste
-              </Button>
             </Content>
         </div>
       </MainCtnHorizontal>

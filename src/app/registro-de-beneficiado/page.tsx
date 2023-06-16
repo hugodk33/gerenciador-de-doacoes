@@ -59,7 +59,7 @@ export default function ClientRegister() {
             <InputTextForms label="Complemento" />
           </span>
           <span className="inline-block sm:w-full md:w-full md:pr-1 pt-4" >
-            {/* <Button><AiFillSave className="inline-block text-2xl" /> Registrar </Button> */}
+            <Button onclick={() => console.log('teste')}><AiFillSave className="inline-block text-2xl" /> Registrar </Button>
           </span>
         </Content>
       </div>
