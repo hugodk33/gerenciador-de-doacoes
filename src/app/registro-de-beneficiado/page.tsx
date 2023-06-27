@@ -6,7 +6,7 @@ import SideMenu from '@/components/sections/sidemenu'
 import Content from '@/components/sections/content';
 import Header from '@/components/sections/header';
 import { InputTextForms, InputSelect } from '@/components/template/input'
-import { Button } from '@/components/template/button'
+import { Btn } from '@/components/template/btn'
 import BeneficiarysList from '@/components/sections/beneficiarysList';
 
 export default function ClientRegister() {
@@ -59,7 +59,7 @@ export default function ClientRegister() {
             <InputTextForms label="Complemento" />
           </span>
           <span className="inline-block sm:w-full md:w-full md:pr-1 pt-4" >
-            <Button onclick={() => console.log('teste')}><AiFillSave className="inline-block text-2xl" /> Registrar </Button>
+            <Btn onclick={() => console.log('teste')}><AiFillSave className="inline-block text-2xl" /> Registrar </Btn>
           </span>
         </Content>
       </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "../template/button"
+import { Btn } from "../template/btn"
 import { AiOutlineUsergroupAdd, AiFillSave } from 'react-icons/ai'
 import { BsFillTrashFill } from 'react-icons/bs'
 import Modal from 'react-modal';
@@ -43,7 +43,7 @@ export default function BeneficiarysList({
             <ul id={'beneficiarys'} className="flex flex-col p-4 gap-3 rounded bg-gray-200 max-h-60 overflow-y-scroll mb-5">
                 {
                     beneficiarys.map((a, b) => (
-                        b <= 2 ?
+                        b <= 0 ?
                             <li key={'key-top-' + b} className="flex flex-row text-4xl">
                                 <button className="flex rounded-full justify-center bg-gray-100 drop-shadow-md w-10 h-10 text-gray mr-5" >
                                     <BsFillTrashFill style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 10 }} />
@@ -59,9 +59,9 @@ export default function BeneficiarysList({
                     ))
                 }
             </ul>
-            <Button onclick={() => setModalIsOpen(!modalIsOpen)}>
+            <Btn onclick={() => setModalIsOpen(!modalIsOpen)}>
                 <AiOutlineUsergroupAdd /> Pesquisar Beneficiado
-            </Button>
+            </Btn>
             <Modal isOpen={modalIsOpen} style={customStyles}>
                 <ul className="flex flex-col p-6 gap-3 rounded max-h-100 mb-4">
                     {
@@ -79,9 +79,9 @@ export default function BeneficiarysList({
                         ))
                     }
                 </ul>
-                <Button onclick={() => setModalIsOpen(!modalIsOpen)}>
+                <Btn onclick={() => setModalIsOpen(!modalIsOpen)}>
                     <AiOutlineUsergroupAdd /> Adicionar Beneficiado
-                </Button>
+                </Btn>
             </Modal>
         </>
     )
