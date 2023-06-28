@@ -43,7 +43,7 @@ export default function Home() {
           <span style={{height: '5px', width: '100%'}} />
           <InputPassword label="Senha"/>
           <span style={{height: '5px', width: '100%'}} />
-          <button onClick={() => getteste()}> teste </button>
+          <Btn onclick={() => getteste()}> ENTRAR </Btn>
         </div>
     </main>
   )

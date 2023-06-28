@@ -11,7 +11,7 @@ export default function ListaDeAtendimentos() {
     <section>
       <MainCtnHorizontal>
         <Header />
-        <div className='flex w-full pt-5 md:pl-20 md:pr-20'>
+        <div className='flex w-full pt-5 md:pl-60 md:pr-60'>
           <SideMenu />
           <Content>
             <h1 className='text-3xl pb-2 pt-2'>Atendimentos</h1>

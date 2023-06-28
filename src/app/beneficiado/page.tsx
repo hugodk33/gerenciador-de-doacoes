@@ -8,7 +8,7 @@ export default function atendimento() {
     <section>   
       <MainCtnHorizontal>
         <Header />
-        <div className='flex w-full pt-5 md:pl-20 md:pr-20'>
+        <div className='flex w-full pt-5 md:pl-60 md:pr-60'>
             <SideMenu />
             <Content>
             <h1>Beneficiado</h1>
