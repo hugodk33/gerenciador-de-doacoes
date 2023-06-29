@@ -14,7 +14,7 @@ export default function SideMenu( ) {
                 <Link href="/atendimento"><MdDiversity3 className="inline-block" /> Atendimento</Link>
             </li>
             <li className='text-md uppercase'>
-                <Link href="/lista-de-atendimentos"><MdDiversity3 className="inline-block" /> Ver atendimentos</Link>
+                <Link href="/pesquisa-de-atendimentos"><MdDiversity3 className="inline-block" /> Ver atendimentos</Link>
             </li>
             <span className='text-md font-bold uppercase mt-4'>beneficiados</span>
             <hr />
@@ -22,15 +22,15 @@ export default function SideMenu( ) {
                 <Link href="/registro-de-beneficiado"><MdPersonAdd className="inline-block" /> Cadastro de beneficiado</Link>
             </li>
             <li className='text-md uppercase'>
-                <Link href="/inicio"><MdPersonSearch className="inline-block" /> Consulta de famílias e beneficiados</Link>
+                <Link href="/pesquisa-de-beneficiados"><MdPersonSearch className="inline-block" /> Consulta de famílias e beneficiados</Link>
             </li>
             <span className='text-md font-bold uppercase mt-4'>estoque</span>
             <hr />
             <li className='text-md uppercase'>
-                <Link href="/inicio"><MdPersonAddAlt className="inline-block" /> Cadastro de produtos</Link>
+                <Link href="/registro-de-almoxarifado"><MdPersonAddAlt className="inline-block" /> Cadastro de produtos</Link>
             </li>
             <li className='text-md uppercase'>
-                <Link href="/inicio"><MdContentPasteSearch className="inline-block"/> Consulta de produtos</Link>
+                <Link href="/pesquisa-de-almoxarifado"><MdContentPasteSearch className="inline-block"/> Consulta de produtos</Link>
             </li>
         </ul>
       </section>
