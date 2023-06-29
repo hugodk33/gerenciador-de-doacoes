@@ -18,7 +18,7 @@ export default function ClientRegister() {
         <Content>
           <h1 className='text-3xl pb-2 pt-2'>cadastro de beneficiado</h1>
           <h3 className='text-xl pb-2 pt-2'><BsPersonVcard className="inline-block text-blue-500" /> dados pessoais</h3> 
-          <hr />
+          <hr className='mb-2 mt-4' />
           <span className="inline-block sm:w-full md:w-full pt-4" >
             <InputTextForms label="Nome" />
           </span>

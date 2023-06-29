@@ -93,7 +93,7 @@ export default function Service() {
           <Content>
             <h1 className='text-3xl pb-4 pt-2'>Atendimento</h1>
             <h3 className='text-xl pb-2 pt-4'><AiOutlineForm id="beneficiado-nome" className="inline-block text-blue-500" /> Informar atendimento</h3>
-            <hr className='mb-4' />
+            <hr className='mb-2 mt-2' />
             <span className="inline-block sm:w-full md:w-full pt-4" >
               <InputTextForms label="Assunto do atendimento" />
             </span>
