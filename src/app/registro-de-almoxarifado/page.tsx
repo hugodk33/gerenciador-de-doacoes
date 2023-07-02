@@ -22,22 +22,28 @@ export default function warehouseRegister() {
             <h3 className='text-xl pb-2 pt-4'><AiOutlineForm id="beneficiado-nome" className="inline-block text-blue-500" /> Entrada de produto</h3>
             <hr className='mb-2 mt-2' />
             <span className="inline-block sm:w-full md:w-full pt-4" >
-              <InputTextForms label="Nome do Produto" />
+              <InputTextForms label="Nome do Produto" value={null} onChange={function (e: any): void {
+                throw new Error('Function not implemented.');
+              } } />
             </span>
             <span className="inline-block sm:w-full md:w-4/12 pt-2 md:pr-2" >
               <InputSelect label={'observações'}  />
             </span>
             <span className="inline-block sm:w-full md:w-4/12 pt-2 md:pr-2" >
-              <InputTextForms label={'Nome da Medida'}  />
+              <InputTextForms label={'Nome da Medida'} value={null} onChange={function (e: any): void {
+                throw new Error('Function not implemented.');
+              } }  />
             </span>
             <span className="inline-block sm:w-full md:w-4/12 pt-2 md:pr-2" >
-              <InputTextForms label={'Quantidade'}  />
+              <InputTextForms label={'Quantidade'} value={null} onChange={function (e: any): void {
+                throw new Error('Function not implemented.');
+              } }  />
             </span>
             <span className="inline-block w-full pt-2" >
               <InputTextArea label={'observações'}  />
             </span>
             <span className="inline-block sm:w-full md:w-3/12 pt-4" >
-              <Btn onclick={() => console.log('teste')}><AiFillSave /> Enviar</Btn>
+              <Btn onClick={() => console.log('teste')}><AiFillSave /> Enviar</Btn>
             </span>
           </Content>
         </div>

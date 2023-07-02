@@ -4,7 +4,7 @@ import SideMenu from '@/components/sections/sidemenu'
 import Content from '@/components/sections/content';
 import Header from '@/components/sections/header';
 import { BsEye, BsTrash, BsHouse } from 'react-icons/bs';
-import { InputSelect, InputText } from '@/components/template/input';
+import { InputText } from '@/components/template/input';
 import { Btn } from '@/components/template/btn';
 import { CheckBox } from '@/components/template/checkbox';
 
@@ -22,7 +22,7 @@ export default function warehouseSearch() {
               <InputText label={'Digite sua pesquisa'}  value='texto' />
             </span>
             <span className="inline-block sm:w-full md:w-2/12 pt-2" >
-              <Btn onclick={() => { }}>Buscar</Btn>
+              <Btn onClick={() => { }}>Buscar</Btn>
             </span>
             <span className="inline-block sm:w-full md:w-4/12 pt-2 md:pr-2" >
               <fieldset className='flex flex-row text-xl gap-4 pb-1 pt-4'>

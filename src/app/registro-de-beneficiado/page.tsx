@@ -13,11 +13,10 @@ import { useEffect, useState } from 'react';
 
 type data = {
   name: string | null,
-  password: string | null,
   birthday: Date | null,
   RG: number | null,
   CPF: number | null,
-  maritial_statuts: string | null,
+  maritial_status: string | null,
   kinship: number | null,
   address: number | null,
   email: string | null,
@@ -26,11 +25,10 @@ type data = {
 
 const initialData = {
   name: null,
-  password: null,
   birthday: null,
   RG: null,
   CPF: null,
-  maritial_statuts: null,
+  maritial_status: null,
   kinship: null,
   address: null,
   email: null,
@@ -60,7 +58,9 @@ export default function ClientRegister() {
           birthday: '2023-07-01',
           RG: dataForm.RG,
           CPF: dataForm.CPF,
-          maritial_statuts: dataForm.maritial_statuts,
+          maritial_status: dataForm.maritial_status,
+          phone: dataForm.phone,
+          email: dataForm.email,
           kinship: 1,
           address: 1
         },
@@ -86,10 +86,9 @@ export default function ClientRegister() {
     }
   }
 
-  useEffect(() => {
-    console.log('dataForm')
-    console.log(dataForm)
-  }, [dataForm])
+  // useEffect(() => {
+
+  // }, [dataForm])
 
   return (
     <MainCtnHorizontal>
@@ -110,7 +109,7 @@ export default function ClientRegister() {
             <InputTextForms id={'CPF'} label="CPF" value={dataForm.CPF} onChange={(e) => handleForm(e)} />
           </span>
           <span className="inline-block sm:w-full md:w-6/12 md:pr-1 pt-4" >
-            <InputTextForms id={'maritial_statuts'} label="Estado Civil" value={dataForm.maritial_statuts} onChange={(e) => handleForm(e)} />
+            <InputTextForms id={'maritial_status'} label="Estado Civil" value={dataForm.maritial_status} onChange={(e) => handleForm(e)} />
           </span>
           <h3 className='text-xl pb-2 pt-6'><BsTelephoneOutbound className="inline-block text-blue-500" /> Contato</h3>
           <hr />
@@ -146,7 +145,7 @@ export default function ClientRegister() {
             <InputTextForms label="Complemento" value='texto' onChange={(e) => console.log(e)} />
           </span>
           <span className="inline-block sm:w-full md:w-full md:pr-1 pt-4" >
-            <Btn onclick={() => sendForm()}><AiFillSave className="inline-block" /> Registrar </Btn>
+            <Btn onClick={() => sendForm()}><AiFillSave className="inline-block" /> Registrar </Btn>
           </span>
         </Content>
       </div>

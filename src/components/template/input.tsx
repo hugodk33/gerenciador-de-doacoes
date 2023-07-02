@@ -22,10 +22,10 @@ export function InputTextForms({
   id,
   onChange
 }: {
-  label: string;
-  value: string | number | null;
+  label?: string;
+  value?: string | number | null;
   id?: string;
-  onChange: (e: any) => void;
+  onChange: (e?: any) => void;
 }) {
   return (
     <div className="relative">
