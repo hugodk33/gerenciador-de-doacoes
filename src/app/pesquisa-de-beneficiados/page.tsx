@@ -19,7 +19,7 @@ export default function warehouseSearch() {
             <h1 className='text-3xl pb-4 pt-2'>Pesquisar Famílias ou Beneficiados</h1>
             <hr className='mb-2 mt-4' />
             <span className="inline-block sm:w-full md:w-10/12 pt-2 pr-2" >
-              <InputText label={'Digite sua pesquisa'} />
+              <InputText label={'Digite sua pesquisa'}  value='texto' />
             </span>
             <span className="inline-block sm:w-full md:w-2/12 pt-2" >
               <Btn onclick={() => { }}>Buscar</Btn>
