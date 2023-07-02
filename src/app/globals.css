@@ -65,3 +65,8 @@ body a, body li, body p , body span {
   width: 0.6em;
   margin-right: 10px;
 }
+
+.custom-svg svg {
+  width: 35px ! important;
+  height: 35px ! important;
+}
