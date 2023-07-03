@@ -47,7 +47,7 @@ export default function BeneficiarysList({
     const searchClient = async () => {
 
         try {
-            const response = await axios.get(`http://localhost:3333/clients/${searchValue}`, { 
+            const response = await axios.get(`http://localhost:3333/clients/${searchValue}?page=${1}&perPage=${10}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -94,7 +94,20 @@ export default function BeneficiarysList({
                 {
                     beneficiarys.length > 0 ?
                         <ul id={'beneficiarys'} className="flex flex-col p-4">
-
+                            {
+                                beneficiarys.map((a, b) => (
+                                    <li key={'key-bottom-' + b} className="flex flex-row text-4xl">
+                                        <span className='flex rounded mr-3 h-10 w-10 bg-gray-700 mt-1' />
+                                        <div className="">
+                                            <p className='text-2xl'>{'a.nome'}</p>
+                                            <p className='text-sm uppercase font-semibold'>lorem ipsum</p>
+                                        </div>
+                                        <button className="flex rounded-full justify-center bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 drop-shadow-md w-10 h-10 text-gray mr-5" >
+                                            {/* <AiOutlineUsergroupAdd style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 4, color: 'white' }} /> */}
+                                        </button>
+                                    </li>
+                                ))
+                            }
                         </ul>
                         :
                         <span className="flex flex-col items-center justify-items-center content-center ">
