@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import { Btn, BtnS } from "../template/btn"
-import { AiOutlineCloseCircle , AiOutlineSearch} from 'react-icons/ai'
+import { useState, useEffect, useRef } from "react";
+import { Btn, BtnR } from "../template/btn"
+import { AiOutlineCloseCircle, AiOutlineSearch } from 'react-icons/ai'
 import { FiAlertTriangle } from 'react-icons/fi'
 import Modal from 'react-modal';
 import { InputTextForms } from "../template/input";
+import axios from "axios";
 //import { arrayDumb } from "../dumb/beneficiarysListDumb"
 
 const customStyles = {
@@ -32,6 +33,7 @@ export default function BeneficiarysList({
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [beneficiarys, setBeneficiarys] = useState([])
+    const [searchValue, setSearchValue] = useState('')
     const [inputsToggler, setInputsToggler] = useState(
         {
             commom: true,
@@ -40,25 +42,51 @@ export default function BeneficiarysList({
         }
     )
 
-    const toggleBeneficiarys = (e: React.MouseEvent<HTMLButtonElement>) => {
-        console.log('e.target')
-        //console.log(e.target)
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    const searchClient = async () => {
+
+        try {
+            const response = await axios.get(`http://localhost:3333/clients/${searchValue}`, { 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                }
+            })
+                .then(function (response) {
+                    setBeneficiarys(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const toggleModalBeneficiarys = () => {
-        console.log('toggleModalBeneficiarys')
-        console.log(modalIsOpen)
         setModalIsOpen(!modalIsOpen)
     }
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        console.log('Tecla pressionada:', event.key);
+        //console.log('Tecla pressionada:', event.key);
     };
-    
+
     useEffect(() => {
-        console.log('teste modal')
-        console.log(modalIsOpen)
-    }, [modalIsOpen])
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setModalIsOpen(false)
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        console.log('searchValue')
+        console.log(searchValue)
+    }, [searchValue])
 
     return (
         <div onKeyDown={handleKeyDown} >
@@ -77,39 +105,43 @@ export default function BeneficiarysList({
                 }
             </div>
             <Modal isOpen={modalIsOpen} style={customStyles} ariaHideApp={false}>
-                <div className="flex flex-col">
+                <div className="flex flex-col" ref={modalRef}>
                     <h1 className='text-3xl pb-4 pt-2'>Adicionar familiares</h1>
                     <hr className='mb-2 mt-4' />
                     <div className="flex flex-row">
-                        <span className="inline-block w-10/12 pt-4" >
-                            <InputTextForms label={"Pesquisar Beneficiado"} value={null} onChange={() => {}} />
+                        <span className="inline-block w-10/12 pt-4 pr-2" >
+                            <InputTextForms label={"Pesquisar Beneficiado"} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
                         </span>
                         <span className="inline-block w-2/12 pt-4" >
-                            <Btn onClick={() => {}}>
-                                <AiOutlineSearch />
+                            <Btn onClick={() => searchClient()}>
+                                <AiOutlineSearch style={{ margin: '0 auto' }} />
                             </Btn>
                         </span>
                     </div>
-                    <button onClick={() => setModalIsOpen(!modalIsOpen)}>
-                        <AiOutlineCloseCircle />
-                    </button>
+                    <span className="absolute" style={{ right: 5, top: 10 }}>
+                        <BtnR onClick={() => setModalIsOpen(!modalIsOpen)}>
+                            <AiOutlineCloseCircle style={{ fontSize: '24px', marginTop: '8px' }} />
+                        </BtnR>
+                    </span>
                     {
                         beneficiarys.length > 0 ?
                             <ul className="flex flex-col p-6 gap-3 rounded max-h-100 mb-4">
+
                                 {
-                                    // beneficiarys.map((a, b) => (
-                                    //     <li  key={'key-bottom-' + b} className="flex flex-row text-4xl">
-                                    //         <button onClick={(e) => toggleBeneficiarys(e)} className="flex rounded-full justify-center bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 drop-shadow-md w-10 h-10 text-gray mr-5" >
-                                    //             <AiOutlineUsergroupAdd style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 4, color: 'white' }} />
-                                    //         </button>
-                                    //         <span className='flex rounded mr-3 h-10 w-10 bg-gray-700 mt-1' />
-                                    //         <div className="">
-                                    //             <p className='text-2xl'>{a.nome}</p>
-                                    //             <p className='text-sm uppercase font-semibold'>lorem ipsum</p>
-                                    //         </div>
-                                    //     </li>
-                                    // ))
+                                    beneficiarys.map((a, b) => (
+                                        <li key={'key-bottom-' + b} className="flex flex-row text-4xl">
+                                            <button className="flex rounded-full justify-center bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 drop-shadow-md w-10 h-10 text-gray mr-5" >
+                                                {/* <AiOutlineUsergroupAdd style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 4, color: 'white' }} /> */}
+                                            </button>
+                                            <span className='flex rounded mr-3 h-10 w-10 bg-gray-700 mt-1' />
+                                            <div className="">
+                                                <p className='text-2xl'>{'a.nome'}</p>
+                                                <p className='text-sm uppercase font-semibold'>lorem ipsum</p>
+                                            </div>
+                                        </li>
+                                    ))
                                 }
+
                             </ul>
                             :
                             null
