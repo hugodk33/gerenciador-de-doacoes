@@ -6,7 +6,7 @@ import SideMenu from '@/components/sections/sidemenu'
 import Content from '@/components/sections/content';
 import Header from '@/components/sections/header';
 import { InputTextForms } from '@/components/template/input'
-import { Btn } from '@/components/template/btn'
+import { Btn  } from '@/components/template/btn'
 import BeneficiarysList from '@/components/sections/beneficiarysList';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -66,7 +66,7 @@ export default function ClientRegister() {
         },
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          'Accept': 'application/json'
         }
       })
 

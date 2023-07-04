@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { Btn, BtnR } from "../template/btn"
-import { AiOutlineCloseCircle, AiOutlineSearch } from 'react-icons/ai'
+import { Btn, BtnR, BtnS } from "../template/btn"
+import { AiOutlineCloseCircle, AiOutlineSearch, AiOutlineUsergroupAdd } from 'react-icons/ai'
 import { FiAlertTriangle } from 'react-icons/fi'
 import Modal from 'react-modal';
+
 import { InputTextForms } from "../template/input";
 import axios from "axios";
 //import { arrayDumb } from "../dumb/beneficiarysListDumb"
@@ -47,14 +48,20 @@ export default function BeneficiarysList({
     const searchClient = async () => {
 
         try {
-            const response = await axios.get(`http://localhost:3333/clients/${searchValue}?page=${1}&perPage=${10}`, {
+            //const response = await axios.get(`http://localhost:3333/clients/${searchValue}?page=${1}&perPage=${10}`, {
+            const response = await axios.get(`http://localhost:3333/clients/search`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
+                },
+                params: {
+                    name: searchValue,
+                    perPage: 10,
+                    page: 1
                 }
             })
                 .then(function (response) {
-                    setBeneficiarys(response.data);
+                    setBeneficiarys(response.data.data);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -84,27 +91,31 @@ export default function BeneficiarysList({
     }, []);
 
     useEffect(() => {
-        console.log('searchValue')
-        console.log(searchValue)
-    }, [searchValue])
+        console.log('Beneficiarys')
+        console.log(beneficiarys)
+    }, [beneficiarys])
 
     return (
         <div onKeyDown={handleKeyDown} >
             <div className="flex flex-col items-center justify-items-center bg-gray-100 content-center p-4 gap-3 overflow-y-scroll mb-3">
                 {
                     beneficiarys.length > 0 ?
-                        <ul id={'beneficiarys'} className="flex flex-col p-4">
+                        <ul id={'beneficiarys'} className="flex flex-col w-full p-4">
                             {
                                 beneficiarys.map((a, b) => (
                                     <li key={'key-bottom-' + b} className="flex flex-row text-4xl">
-                                        <span className='flex rounded mr-3 h-10 w-10 bg-gray-700 mt-1' />
-                                        <div className="">
+                                        <span className="flex w-2/12">
+                                            <span className='flex rounded mr-3 h-10 w-10 bg-gray-700 mt-1' />
+                                        </span>
+                                        <span className="flex w-9/12 flex-col">
                                             <p className='text-2xl'>{'a.nome'}</p>
                                             <p className='text-sm uppercase font-semibold'>lorem ipsum</p>
-                                        </div>
-                                        <button className="flex rounded-full justify-center bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 drop-shadow-md w-10 h-10 text-gray mr-5" >
-                                            {/* <AiOutlineUsergroupAdd style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 4, color: 'white' }} /> */}
-                                        </button>
+                                        </span>
+                                        <span className="flex w-1/12 mp-1">
+                                            <BtnS onClick={()=>{}}  >
+                                                <AiOutlineUsergroupAdd />
+                                            </BtnS>
+                                        </span>
                                     </li>
                                 ))
                             }
@@ -141,18 +152,25 @@ export default function BeneficiarysList({
                             <ul className="flex flex-col p-6 gap-3 rounded max-h-100 mb-4">
 
                                 {
-                                    beneficiarys.map((a, b) => (
-                                        <li key={'key-bottom-' + b} className="flex flex-row text-4xl">
-                                            <button className="flex rounded-full justify-center bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 drop-shadow-md w-10 h-10 text-gray mr-5" >
-                                                {/* <AiOutlineUsergroupAdd style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 4, color: 'white' }} /> */}
-                                            </button>
-                                            <span className='flex rounded mr-3 h-10 w-10 bg-gray-700 mt-1' />
-                                            <div className="">
-                                                <p className='text-2xl'>{'a.nome'}</p>
-                                                <p className='text-sm uppercase font-semibold'>lorem ipsum</p>
-                                            </div>
-                                        </li>
-                                    ))
+                                    <>
+                                        <h1 className="flex flex-col pt-2 mb-2">Resultados da pesquisa para: <b> {" " + searchValue}</b></h1>
+                                        {beneficiarys.map((a, b) => (
+                                            <li key={'key-bottom-' + b} className="flex flex-row text-4xl">
+                                                <span className='md:w-1/12 flex mt-1'>
+                                                    <span className='flex rounded mr-3 h-10 w-10 bg-gray-700 mt-1' />
+                                                </span>
+                                                <div className="md:w-10/12">
+                                                    <p className='text-2xl'> teste </p>
+                                                    <p className='text-sm uppercase font-semibold'>lorem ipsum</p>
+                                                </div>
+                                                <div className="md:w-1/12">
+                                                    <BtnS onClick={() => ("Function not implemented.")} >
+                                                        <AiOutlineUsergroupAdd style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 4 }} /> 
+                                                    </BtnS>
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </>
                                 }
 
                             </ul>
