@@ -1,7 +1,7 @@
 'use client'
 
 import { Btn } from '@/components/template/btn';
-import { InputText , InputPassword } from '../components/template/input'
+import { InputText } from '../components/template/input'
 import axios from 'axios';
 
 export default function Home() {
@@ -41,7 +41,7 @@ export default function Home() {
         <div className='flex flex-col p-8 gap-4 columns-sm rounded w-full max-w-sm shadow-black-500/50 bg-white'>
           <InputText label="Usuário" value={''}/>
           <span style={{height: '5px', width: '100%'}} />
-          <InputPassword label="Senha"/>
+          {/* <InputPassword label="Senha"/> */}
           <span style={{height: '5px', width: '100%'}} />
           <Btn onClick={() => getteste()}> ENTRAR </Btn>
         </div>
