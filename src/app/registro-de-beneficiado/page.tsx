@@ -14,38 +14,42 @@ import { useEffect, useState } from 'react';
 import { ModalSm } from '@/components/template/modal';
 import { FiAlertTriangle } from 'react-icons/fi';
 
-type data = {
-  name: string | null,
-  birthday: string | null,
-  RG: number | null,
-  CPF: number | null,
-  maritial_status:  string | number | null | undefined,
-  kinship: number | null,
-  address: number | null,
-  email: string | null,
-  phone: number | null,
-  CEP: number | null,
-  street: string | null,
-  complement: string | null,
-  number: number | null,
-  
-}
+type AddressData = {
+  CEP: number | null;
+  street: string | null;
+  number: number | null;
+  complement: string | null;
+};
 
-const initialData = {
+type DataForm = {
+  name: string | null;
+  birthday: string | null;
+  RG: number | null;
+  CPF: number | null;
+  maritial_status: string | number | null | undefined;
+  kinship: number | null;
+  email: string | null;
+  phone: number | null;
+  CEP: number | null;
+  street: string | null;
+  number: number | null;
+  complement: string | null;
+};
+
+const initialData: DataForm = {
   name: null,
   birthday: null,
   RG: null,
   CPF: null,
   maritial_status: null,
   kinship: null,
-  address: null,
   email: null,
   phone: null,
   CEP: null,
   street: null,
-  complement: null,
   number: null,
-}
+  complement: null,
+};
 
 const maritial_status_options = [
   { value: 'solteiro(a)', label: 'solteiro(a)' },
@@ -58,86 +62,81 @@ const maritial_status_options = [
 
 export default function ClientRegister() {
 
-  const [dataForm, setDataForm] = useState<data>(initialData)
+  const [dataForm, setDataForm] = useState<DataForm>(initialData)
   const [alertModalSucess, setAlertModalSuccess] = useState(false)
   const [alertModalError, setAlertModalError] = useState(false)
 
   const handleForm = (value: React.ChangeEvent<HTMLInputElement>) => {
-    const index = value.target.id
-    let tempValue = value.target.value
-    let tempData = dataForm
-    tempData = { ...tempData, [index]: tempValue }
-    setDataForm(tempData)
-  }
+    const index = value.target.id;
+    let tempValue = value.target.value;
+    let tempData = { ...dataForm }; // Crie uma cópia do objeto dataForm
+    
+    tempData = { ...tempData, [index]: tempValue };
+    
+    setDataForm(tempData);
+  };
+  
 
   const handleFormSelect = (value: string) => {
-    let prevDataForm = {...dataForm  , maritial_status: value.toString()}
+    const selectedValue = value.trim() !== '' ? value : null; // Definir como null se o valor estiver vazio
+    let prevDataForm = { ...dataForm, maritial_status: selectedValue };
     setDataForm(prevDataForm);
   };
 
-  const handleFormCalendar = (value: Date) => {
-    let prevDataForm = {...dataForm  , birthday: value.toString()}
-    console.log('value')
-    console.log(value)
-    //setDataForm(prevDataForm);
+  const handleFormCalendar = (value: string) => {
+    let prevDataForm = { ...dataForm, birthday: value };
+    setDataForm(prevDataForm);
   };
 
   useEffect(() => {
     console.log('dataForm')
     console.log(dataForm)
-  },[dataForm])
+  }, [dataForm])
 
   const sendForm = async () => {
-    const now = new Date();
-  
     try {
       if (isFormValid()) {
+        const {
+          name,
+          birthday,
+          RG,
+          CPF,
+          maritial_status,
+          phone,
+          email,
+          CEP,
+          street,
+          number,
+          complement
+        } = dataForm;
+  
         const clientResponse = await axios.post(
           'http://localhost:3333/clients',
           {
-            name: dataForm.name,
-            birthday: '2023-07-01',
-            RG: dataForm.RG,
-            CPF: dataForm.CPF,
-            maritial_status: dataForm.maritial_status,
-            phone: dataForm.phone,
-            email: dataForm.email,
-            kinship: 1,
-            address: 1
+            name,
+            birthday,
+            RG,
+            CPF,
+            maritial_status,
+            phone,
+            email,           
+            CEP: CEP,
+            street: street,
+            number: number,
+            complement: complement,
           },
           {
             headers: {
               'Content-Type': 'application/json',
-              Accept: 'application/json'
-            }
+              Accept: 'application/json',
+            },
           }
         );
   
         // Verificar se a requisição para /clients foi bem-sucedida
-        if (clientResponse.status === 200) {
-          const addressResponse = await axios.post(
-            'http://localhost:3333/address',
-            {
-              CEP: dataForm.CEP,
-              street: dataForm.street,
-              number: dataForm.number,
-              address: dataForm.address
-            },
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-              }
-            }
-          );
-  
-          // Verificar se a requisição para /address foi bem-sucedida
-          if (addressResponse.status === 200) {
-            setAlertModalSuccess(true);
-            setDataForm(initialData);
-          } else {
-            setAlertModalError(true);
-          }
+        if (clientResponse.status === 201) {
+          setAlertModalSuccess(true);
+          setDataForm(initialData);
         } else {
           setAlertModalError(true);
         }
@@ -150,14 +149,15 @@ export default function ClientRegister() {
     }
   };
   
+
   const isFormValid = () => {
     if (!dataForm.name || !dataForm.RG || !dataForm.CPF || !dataForm.phone) {
       return false; // Retorna false se algum campo estiver vazio
     }
-    
+
     return true; // Retorna true se o formulário estiver válido
   };
-  
+
 
   return (
     <MainCtnHorizontal>
@@ -178,13 +178,14 @@ export default function ClientRegister() {
             <InputTextForms id={'CPF'} label="CPF" value={dataForm.CPF} onChange={(e) => handleForm(e)} />
           </span>
           <span className="inline-block sm:w-full md:w-6/12 md:pr-1 pt-4" >
-            <InputSelect id={'maritial_status'} label="Estado Civil" value={dataForm.maritial_status} onChange={(e) => handleFormSelect(e)} options={maritial_status_options}/>
+            <InputSelect id={'maritial_status'} label="Estado Civil" value={dataForm.maritial_status} onChange={(e) => handleFormSelect(e)} options={maritial_status_options} />
           </span>
           <span className="inline-block sm:w-full md:w-6/12 md:pr-1 pt-4" >
             <InputCalendarForm
               id={'birthday'}
               label="Data de Nascimento"
-              onChange={(e) => console.log(e)}
+              value={dataForm.birthday}
+              onChange={handleFormCalendar}
             />
           </span>
           <h3 className='text-xl pb-2 pt-6'><BsTelephoneOutbound className="inline-block text-blue-500" /> Contato</h3>
@@ -202,17 +203,38 @@ export default function ClientRegister() {
           </span>
           <h3 className='text-xl pb-2 pt-6'><BsHouse className="inline-block text-blue-500" /> Endereço</h3>
           <hr />
-          <span className="inline-block sm:w-full md:w-6/12 md:pr-1 pt-4" >
-            <InputTextForms id="CEP" label="CEP" value={dataForm.CEP}  onChange={(e) => handleForm(e)} />
+
+          <span className="inline-block sm:w-full md:w-6/12 md:pl-1 pt-4">
+            <InputTextForms
+              id="CEP"
+              label="CEP"
+              value={dataForm.CEP}
+              onChange={(e) => handleForm(e)}
+            />
           </span>
-          <span className="inline-block sm:w-full md:w-6/12 md:pl-1 pt-4" >
-            <InputTextForms id="street" label="Rua" value={dataForm.street}  onChange={(e) => handleForm(e)} />
+          <span className="inline-block sm:w-full md:w-6/12 md:pl-1 pt-4">
+            <InputTextForms
+              id="street"
+              label="Rua"
+              value={dataForm.street}
+              onChange={(e) => handleForm(e)}
+            />
           </span>
-          <span className="inline-block sm:w-full md:w-6/12 md:pl-1 pt-4" >
-            <InputTextForms id="number" label="Número"  value={dataForm.number} onChange={(e) => handleForm(e)} />
+          <span className="inline-block sm:w-full md:w-6/12 md:pl-1 pt-4">
+            <InputTextForms
+              id="number"
+              label="Número"
+              value={dataForm.number}
+              onChange={(e) => handleForm(e)}
+            />
           </span>
-          <span className="inline-block sm:w-full md:w-6/12 md:pl-1 pt-4" >
-            <InputTextForms id="complement" label="Complemento" value={dataForm.complement}  onChange={(e) => handleForm(e)} />
+          <span className="inline-block sm:w-full md:w-6/12 md:pl-1 pt-4">
+            <InputTextForms
+              id="complement"
+              label="Complemento"
+              value={dataForm.complement}
+              onChange={(e) => handleForm(e)}
+            />
           </span>
           <span className="inline-block sm:w-full md:w-6/12 md:pr-1 pt-4" >
             <Btn onClick={() => sendForm()}><AiFillSave className="inline-block" /> Registrar </Btn>
