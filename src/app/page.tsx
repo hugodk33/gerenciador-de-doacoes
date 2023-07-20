@@ -1,7 +1,7 @@
 'use client'
 
 import { Btn } from '@/components/template/btn';
-import { InputText } from '../components/template/input'
+import { InputText } from '@/components/template/input'
 import axios from 'axios';
 
 export default function Home() {

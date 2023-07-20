@@ -1,17 +1,17 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { MainCtnHorizontal } from '@/components/template/mainctn'
+import { MainCtnHorizontal } from '@/app/components/template/mainctn'
 import SideMenu from '@/components/sections//sidemenu'
-import Content from '@/components/sections/content';
-import Header from '@/components/sections/header';
+import Content from '@/app/components/sections/content';
+import Header from '@/app/components/sections/header';
 import BeneficiarysList from '@/components/sections/beneficiarysList';
-import { Btn , BtnS} from '@/components/template/btn'
-import { CheckBox } from '@/components/template/checkbox';
+import { Btn , BtnS} from '@/app/components/template/btn'
+import { CheckBox } from '@/app/components/template/checkbox';
 import { AiOutlineForm } from 'react-icons/ai'
 import { BsHouse, BsPeople, BsPersonVcard, BsTelephoneOutbound } from 'react-icons/bs'
-import { arrayDumb } from '@/components/dumb/beneficiarysListDumb';
+import { arrayDumb } from '@/app/components/dumb/beneficiarysListDumb';
 import axios from 'axios';
-import { InputTextForms , InputSelect , InputTextArea } from '@/components/template/input'
+import { InputTextForms , InputSelect , InputTextArea } from '@/app/components/template/input'
 
 export default function Service() {
 
@@ -95,7 +95,7 @@ export default function Service() {
             <h3 className='text-xl pb-2 pt-4'><AiOutlineForm id="beneficiado-nome" className="inline-block text-blue-500" /> Informar atendimento</h3>
             <hr className='mb-2 mt-2' />
             <span className="inline-block sm:w-full md:w-full pt-4" >
-              <InputTextForms label="Assunto do atendimento" />
+              <InputTextForms label="Assunto do atendimento" onChange={() => {}} />
             </span>
             <fieldset className='flex flex-row text-xl gap-4 pb-1 pt-4'>
               <CheckBox label='comum' />
@@ -110,7 +110,7 @@ export default function Service() {
             <BeneficiarysList benefeciarys={[]} />
 
             <span className="inline-block sm:w-full md:w-3/12 pt-4" >
-              <Btn onclick={() => console.log('teste')}>Enviar</Btn>
+              <Btn onClick={() => {}}>Enviar</Btn>
             </span>
           </Content>
         </div>

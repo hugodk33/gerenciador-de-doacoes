@@ -1,7 +1,7 @@
-import { MainCtnHorizontal } from '@/components/template/mainctn'
+import { MainCtnHorizontal } from '@/app/components/template/mainctn'
 import SideMenu from '@/components/sections/sidemenu'
-import Content from '@/components/sections/content';
-import Header from '@/components/sections/header';
+import Content from '@/app/components/sections/content';
+import Header from '@/app/components/sections/header';
 
 export default function DashboardLayout() {
   return (

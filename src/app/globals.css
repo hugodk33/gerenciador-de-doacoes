@@ -70,3 +70,7 @@ body a, body li, body p , body span {
   width: 35px ! important;
   height: 35px ! important;
 }
+
+.react-datepicker-wrapper {
+  width: 100%;
+}

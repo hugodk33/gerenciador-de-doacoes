@@ -20,13 +20,13 @@ export default function ServiceSearch() {
             <h1 className='text-3xl pb-4 pt-2'>Pesquisar Atendimentos</h1>
             <hr className='mb-2 mt-4' />
             <span className="inline-block sm:w-full md:w-12/12 pr-2" >
-              <InputTextForms label={'Digite sua busca'} />
+              <InputTextForms label={'Digite sua busca'} onChange={()=>{}} />
             </span>
             <span className="inline-block sm:w-full md:w-4/12 pr-2 mt-2" >
               <InputSelect label={'Tipo de atendimento'} />
             </span>
             <span className="inline-block sm:w-full md:w-4/12 mt-2" >
-              <Btn onclick={() => { }}>Buscar</Btn>
+              <Btn onClick={() => { }}>Buscar</Btn>
             </span>
             <ul className="flex flex-col p-4 gap-3 rounded overflow-y-scroll mb-5 mt-5">
               <li key={'key-bottom-'} className="flex flex-row text-4xl w-full">

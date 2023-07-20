@@ -18,10 +18,10 @@ export default function warehouseSearch() {
             <h1 className='text-3xl pb-4 pt-2'>Pesquisar no Almoxarifado</h1>
             <hr className='mb-2 mt-4' />
             <span className="inline-block sm:w-full md:w-10/12 pt-2 pr-2" >
-              <InputText label={'Pesquisar no Almoxarifado'} />
+              <InputText label={'Pesquisar no Almoxarifado'} value={''} />
             </span>
             <span className="inline-block sm:w-full md:w-2/12 pt-2" >
-              <Btn onclick={() => { }}>Buscar</Btn>
+              <Btn onClick={() => { }}>Buscar</Btn>
             </span>
             <span className="inline-block sm:w-full md:w-4/12 pt-2 md:pr-2" >
               <InputSelect label={'Tipo de item'} />

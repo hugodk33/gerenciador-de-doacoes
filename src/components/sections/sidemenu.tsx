@@ -14,7 +14,7 @@ export default function SideMenu( ) {
                 <Link href="/atendimento"><MdDiversity3 className="inline-block" /> Atendimento</Link>
             </li>
             <li className='text-md uppercase'>
-                <Link href="/pesquisa-de-atendimentos"><MdDiversity3 className="inline-block" /> Ver atendimentos</Link>
+                <Link href="/pesquisa-de-atendimentos"><MdHouse className="inline-block" /> Ver atendimentos</Link>
             </li>
             <span className='text-md font-bold uppercase mt-4'>beneficiados</span>
             <hr />
@@ -23,6 +23,14 @@ export default function SideMenu( ) {
             </li>
             <li className='text-md uppercase'>
                 <Link href="/pesquisa-de-beneficiados"><MdPersonSearch className="inline-block" /> Consulta de famílias e beneficiados</Link>
+            </li>
+            <span className='text-md font-bold uppercase mt-4'>endereço</span>
+            <hr />
+            <li className='text-md uppercase'>
+                <Link href="/registro-de-beneficiado"><MdPersonAdd className="inline-block" /> Cadastro de endereço</Link>
+            </li>
+            <li className='text-md uppercase'>
+                <Link href="/pesquisa-de-beneficiados"><MdPersonSearch className="inline-block" /> Consulta de endereços</Link>
             </li>
             <span className='text-md font-bold uppercase mt-4'>estoque</span>
             <hr />
